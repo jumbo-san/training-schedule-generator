@@ -2,15 +2,6 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
-def index():
-    return render_template("index.html")
-
-# ★ ここが重要
-if __name__ == "__main__":
-    app.run(debug=True)
-
-
 # -------------------------
 # BMI 計算と体格分類
 # -------------------------
@@ -75,7 +66,7 @@ def get_sets(frequency):
         return "3〜4セット"
 
 # -------------------------
-# ルーティング
+# ルーティング（★1つだけ）
 # -------------------------
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -108,6 +99,8 @@ def index():
 
     return render_template("index.html", menu=menu_result)
 
-
+# -------------------------
+# ローカル実行用（Renderでは無視される）
+# -------------------------
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
